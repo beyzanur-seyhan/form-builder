@@ -1,0 +1,46 @@
+@import 'reset';
+@import 'form';
+@import 'choice';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;400;500;700;800&display=swap');
+
+header {
+    height: 112px;
+    padding-left: 16px;
+    display: flex;
+    align-items: center;
+
+    li {
+        font-size: 24px;
+        font-weight: 800;
+    }
+}
+
+main {
+    margin-top: 43px;
+    display: flex;
+    justify-content: center;
+
+    .choices {
+        display: flex;
+        flex-direction: column;
+        row-gap: 30px;
+
+        .input-choices {
+            .text-choices {
+                display: flex;
+                gap: 41px;
+                color: #367EB1;
+                font-size: 14px;
+                font-weight: 500;
+                cursor: pointer;
+            }
+            input {
+                margin-top: 15px;
+                width: 305px;
+                font-size: 20px;
+                height: 40px;
+                border: 2px solid #A9A6A6;
+            }
+        }
+    }
+}
