@@ -40,63 +40,74 @@
                 </div>
             </div>
         </div>
-        <div>
+        <div class="form-area">
             <div>
-                <div>
-                    <div>
-                        <div>
-                            <div>Width</div>
-                        </div>
-                        <div>
-                            <input type="number">px
-                        </div>
-                        <input type="range">
-                    </div>
-                    <div>
-                        <div>
-                            <div>Color</div>
-                            <input type="color">
-                        </div>
-                        <div>
-                            <div>Border Radius</div>
-                            <input type="number">
-                            <input type="number">
-                            <input type="number">
-                            <input type="number">
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <div>
-                            <div>
-                                <div>Height</div>
-                            </div>
-                            <div>
-                                <input type="number">px
+                <div class="form-style-area">
+                    <div class="form-style-child">
+                        <div class="form-style-children">
+                            <div class="form-style-children-option">
+                                <div>
+                                    <div>Width</div>
+                                </div>
+                                <div class="form-style-type">
+                                    <input type="number" min="1">
+                                    <span>px</span>
+                                </div>
                             </div>
                             <input type="range">
                         </div>
+                        <div class="form-style-children">
+                            <div class="form-style-children-option">
+                                <div class="form-style-color">
+                                    <div>Color</div>
+                                    <input type="color" value="#FF0000">
+                                </div>
+                                <div class="form-style-border-radius">
+                                    <div>Border Radius</div>
+                                    <div class="border-radius-option">
+                                        <input type="number" min="1">
+                                        <input type="number" min="1">
+                                        <input type="number" min="1">
+                                        <input type="number" min="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <div>
+                    <div class="form-style-child">
+                        <div class="form-style-children">
+                            <div class="form-style-children-option">
+                                <div>
+                                    <div>Height</div>
+                                </div>
+                                <div class="form-style-type">
+                                    <input type="number" min="1">
+                                    <span>px</span>
+                                </div>
+                            </div>
+                                <input type="range">
+                            </div>
                         <div>
-                            <div>
-                                <div>Text & Placeholder Size</div>
+                            <div class="form-style-children">
+                                <div class="form-style-children-option">
+                                    <div>
+                                        <div>Text</div>
+                                    </div>
+                                    <div class="form-style-type">
+                                        <input type="number" min="1">
+                                        <span>px</span>
+                                    </div>
+                                </div>
+                                <input type="range">
                             </div>
-                            <div>
-                                <input type="number">px
-                            </div>
-                            <input type="range">
                         </div>
                     </div>
                 </div>
             </div>
-            <div>
+            <div class="custom-form-area">
                 Custom Form Area
             </div>
-            <div>
+            <div class="form-output">
                 <button>Output Html And Css (One File)</button>
             </div>
         </div>
