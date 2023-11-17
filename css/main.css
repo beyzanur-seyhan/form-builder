@@ -257,4 +257,9 @@ main {
   margin-top: 43px;
   display: flex;
   justify-content: center;
+}
+
+.bg-selected {
+  background-color: #000;
+  color: white;
 }/*# sourceMappingURL=main.css.map */

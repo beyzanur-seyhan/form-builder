@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Builder</title>
     <link rel="stylesheet" href="css/main.css">
+    <script src="app.js" defer></script>
 </head>
 <body>
     <header>
@@ -21,14 +22,14 @@
                     <span>password</span>
                     <span>email</span>
                 </div>
-                <input type="text" placeholder="Input" disabled>
+                <input placeholder="Input" readonly="readonly" id="inputText" onclick="appendElementToParent(event)">
             </div>
             <div class="selectbox">
                 <span>Select Box</span>
-                <select disabled></select>
+                <select readonly="readonly" onclick="appendElementToParent(event)"></select>
             </div>
             <div>
-                <textarea cols="30" rows="10" disabled>Text Area</textarea>
+                <textarea readonly="readonly" cols="30" rows="10" onclick="appendElementToParent(event)">Text Area</textarea>
             </div>
             <div class="form-choices">
                 <div class="select-choices">
@@ -104,9 +105,7 @@
                     </div>
                 </div>
             </div>
-            <div class="custom-form-area">
-                Custom Form Area
-            </div>
+            <div class="custom-form-area" id="custom-form-area"></div>
             <div class="form-output">
                 <button>Output Html And Css (One File)</button>
             </div>
