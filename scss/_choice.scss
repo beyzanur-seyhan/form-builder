@@ -57,6 +57,10 @@
         cursor: pointer;
     }
 
+    input, select, textarea {
+        outline: none;
+    }
+
     .form-choices {
         display: flex;
         flex-direction: column;

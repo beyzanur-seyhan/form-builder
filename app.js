@@ -1,14 +1,14 @@
 const spanTextChoices = document.getElementsByClassName("text-choices")[0];
-const inputTextEl = document.getElementById("inputText");
 const divParentEl = document.getElementById("custom-form-area");
+let selectedFormElement;
 
-const styleSelectedElement = (event) => {
+const setBackgroundToSpan = (event) => {
     const spanChoices = spanTextChoices.children;
-    targetText = event.target.textContent;
+    const targetText = event.target.textContent;
 
     for (let i = 0; i < spanChoices.length; i++) {
         const spanChoice = spanChoices[i];
-        inputTextEl.setAttribute("type",targetText);
+        document.getElementById("inputText").setAttribute("type",targetText);
 
         if(event.target.tagName == "SPAN") {
             if(spanChoices[i].textContent === targetText) {
@@ -28,14 +28,33 @@ const appendElementToParent = (event) => {
         alert("Please Select A Input Type");
      return;   
     }
-    divParentEl.innerHTML += `<input type='${event.target.getAttribute("type")}' />`;
+    divParentEl.innerHTML += `<input type='${event.target.getAttribute("type")}' /><br/>`;
   } else if(targetText === "SELECT") {
-    divParentEl.innerHTML += `<select></select>`; 
+    divParentEl.innerHTML += `<select></select><br/>`; 
   } else if(targetText === "TEXTAREA") {
-    divParentEl.innerHTML += ` <textarea cols="30" rows="10"></textarea>`;
+    divParentEl.innerHTML += ` <textarea cols="30" rows="10"></textarea><br/>`;
   } else {
-    alert("Invalid Selection");
+    alert("Invalid Selection!");
   }
 }
 
-spanTextChoices.addEventListener("click", styleSelectedElement);
+const selectFormElement = (event) => {
+  if(event.target.tagName === "DIV") return;
+
+  alert(event.target.tagName[0].toUpperCase() + 
+  event.target.tagName.slice(1).toLowerCase() + " Clicked!");
+  selectedFormElement = event.target;
+}
+
+const selectStyleOption = (event) => {
+  if(!selectedFormElement) {
+    alert("Please Select A Form Element!");
+    return;
+  } 
+  let selectedOptionClass;
+  selectedOptionClass = event.target.getAttribute("class");
+  document.getElementsByClassName(selectedOptionClass)[0].value = event.target.value;
+}
+
+spanTextChoices.addEventListener("click", setBackgroundToSpan);
+divParentEl.addEventListener("click", selectFormElement);

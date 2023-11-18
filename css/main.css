@@ -182,6 +182,9 @@ li {
   resize: none;
   cursor: pointer;
 }
+.choices input, .choices select, .choices textarea {
+  outline: none;
+}
 .choices .form-choices {
   display: flex;
   flex-direction: column;
