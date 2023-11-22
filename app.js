@@ -3,6 +3,7 @@ const divParentEl = document.getElementById("custom-form-area");
 let selectedFormElement;
 let order = 0;
 let listStyles = [];
+let createdFormElement = "";
 
 const setBackgroundToSpan = (event) => {
   const spanChoices = spanTextChoices.children;
@@ -22,27 +23,25 @@ const setBackgroundToSpan = (event) => {
   }
 };
 
-const appendElementToParent = (event) => {
-  const targetText = event.target.tagName;
+const createFormElement = (eventTarget, order="0") => {
+  const formElement = eventTarget.tagName.toLocaleLowerCase();
+  const element = document.createElement(formElement);
 
-  if (targetText == "INPUT") {
-    if (!event.target.getAttribute("type")) {
-      alert("Please Select A Input Type");
-      return;
-    }
-    const targetAttribute = event.target.getAttribute("type");
-    divParentEl.innerHTML += `<input type='${targetAttribute}' id="input-${targetAttribute}-${order}" /><br/>`;
-  } else if (targetText === "SELECT") {
-    divParentEl.innerHTML += `<select id="select-${order}"></select><br/>`;
-  } else if (targetText === "TEXTAREA") {
-    divParentEl.innerHTML += `<textarea cols="30" rows="10" id="textarea-${order}"></textarea><br/>`;
-  } else if (targetText === "BUTTON") {
-    divParentEl.innerHTML += `<button id="button-${order}">Button</button><br/>`;
-  } else {
-    alert("Invalid Selection!");
-    return;
+  if(formElement === "input") {
+    if (!eventTarget.getAttribute("type")) return;
+
+    element.type = eventTarget.getAttribute("type");
+    element.id = `${formElement}-${element.type}-${order}`;
   }
-  ++order;
+
+  element.id = `${formElement}-${order}`;
+
+  return element;
+}
+
+const appendElementToParent = (event) => {
+  createdFormElement = createFormElement(event.target, ++order);
+  divParentEl.appendChild(createdFormElement);
 };
 
 const selectFormElement = (event) => {
