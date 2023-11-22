@@ -6,6 +6,9 @@ let order = 0;
 let listStyles = [];
 let createdFormElement = "";
 
+spanTextChoices.addEventListener("click", setBackgroundToSpan);
+divParentEl.addEventListener("click", selectFormElement);
+
 const setBackgroundToSpan = (event) => {
   const spanChoices = spanTextChoices.children;
   const targetText = event.target.textContent;
@@ -122,9 +125,6 @@ const selectBindStyleOption = (event) => {
   document.getElementsByClassName(event.target.getAttribute("class"))[0].value =
   event.target.value;
 };
-
-spanTextChoices.addEventListener("click", setBackgroundToSpan);
-divParentEl.addEventListener("click", selectFormElement);
 
 const bindInputToRange = (event) => {
   if(event.target.value === 0) return;
