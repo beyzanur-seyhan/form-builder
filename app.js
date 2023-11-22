@@ -1,5 +1,6 @@
 const spanTextChoices = document.getElementsByClassName("text-choices")[0];
 const divParentEl = document.getElementById("custom-form-area");
+
 let selectedFormElement;
 let order = 0;
 let listStyles = [];
@@ -26,16 +27,14 @@ const setBackgroundToSpan = (event) => {
 const createFormElement = (eventTarget, order="0") => {
   const formElement = eventTarget.tagName.toLocaleLowerCase();
   const element = document.createElement(formElement);
-
+  
   if(formElement === "input") {
     if (!eventTarget.getAttribute("type")) return;
 
     element.type = eventTarget.getAttribute("type");
     element.id = `${formElement}-${element.type}-${order}`;
   }
-
   element.id = `${formElement}-${order}`;
-
   return element;
 }
 
@@ -55,12 +54,11 @@ const selectFormElement = (event) => {
   selectedFormElement = event.target;
 };
 
-const checkThereIsSelector = () => {
+const checkThereIsStyleSelector = () => {
   let isInclude = false;
 
   if (
-    document
-      .getElementsByTagName("style")[0]
+    document.getElementsByTagName("style")[0]
       .innerHTML.includes(selectedFormElement.id)
   )
     isInclude = true;
@@ -86,27 +84,32 @@ const writeStyleToDom = () => {
   );
 };
 
-const createListStyle = (targetSize, choiceType) => {
-  let elementStyle = {};
+const createStyleSelector = (elementProp) => {
+  const selectedElement = selectedFormElement.tagName.toLocaleLowerCase();
 
-  if (selectedFormElement) {
-    if (selectedFormElement.tagName !== "INPUT")
-      elementStyle.selector = `${selectedFormElement.tagName.toLocaleLowerCase()}#${
-        selectedFormElement.id
-      }{`;
-    else {
-      elementStyle.selector = `${selectedFormElement.tagName.toLocaleLowerCase()}#${
-        selectedFormElement.id
-      }[type="${selectedFormElement.getAttribute("type")}"]{`;
-    }
-    if (!checkThereIsSelector()) {
-      elementStyle[choiceType] = `${targetSize}px`;
-      listStyles.push(elementStyle);
-    } else {
-      listStyles[selectedFormElement.id[selectedFormElement.id.length - 1]][
-        choiceType
-      ] = `${targetSize}px`;
-    }
+  if (selectedFormElement.tagName !== "INPUT") {
+    elementProp.selector = `${selectedElement}#${selectedFormElement.id}{`;
+  } else {
+    const elementType = `[type="${selectedFormElement.getAttribute("type")}"]`;
+    elementProp.selector = 
+    `${selectedElement}#${selectedFormElement.id}${elementType}{`;
+  }
+
+  return elementProp;
+}
+
+const createListStyle = (targetSize, choiceType) => {
+  if(!selectedFormElement) return;
+
+  const elementId = selectedFormElement.id;
+  const elementStyle = createStyleSelector({});
+
+  if (!checkThereIsStyleSelector()) {
+    elementStyle[choiceType] = `${targetSize}px`;
+    listStyles.push(elementStyle);
+  } else {
+    listStyles[elementId[elementId.length - 1]-1][choiceType] = 
+    `${targetSize}px`;
   }
 };
 
@@ -126,5 +129,6 @@ divParentEl.addEventListener("click", selectFormElement);
 const bindInputToRange = (event) => {
   if(event.target.value === 0) return;
 
-  document.getElementsByClassName(event.target.getAttribute("class"))[1].value = event.target.value;
+  document.getElementsByClassName(event.target.getAttribute("class"))[1].
+  value = event.target.value;
 }
