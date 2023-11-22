@@ -6,9 +6,6 @@ let order = 0;
 let listStyles = [];
 let createdFormElement = "";
 
-spanTextChoices.addEventListener("click", setBackgroundToSpan);
-divParentEl.addEventListener("click", selectFormElement);
-
 const setBackgroundToSpan = (event) => {
   const spanChoices = spanTextChoices.children;
   const targetText = event.target.textContent;
@@ -27,23 +24,30 @@ const setBackgroundToSpan = (event) => {
   }
 };
 
-const createFormElement = (eventTarget, order="0") => {
+const createFormElement = (eventTarget, order) => {
   const formElement = eventTarget.tagName.toLocaleLowerCase();
-  const element = document.createElement(formElement);
+  let result = document.createElement(formElement);
   
   if(formElement === "input") {
-    if (!eventTarget.getAttribute("type")) return;
+    if (!eventTarget.getAttribute("type")) result = false;;
 
-    element.type = eventTarget.getAttribute("type");
-    element.id = `${formElement}-${element.type}-${order}`;
+    result.type = eventTarget.getAttribute("type");
+    result.id = `${formElement}-${result.type}-${order}`;
   }
-  element.id = `${formElement}-${order}`;
-  return element;
+  result.id = `${formElement}-${order}`;
+  return result;
 }
 
 const appendElementToParent = (event) => {
-  createdFormElement = createFormElement(event.target, ++order);
+  const createdFormElement = createFormElement(event.target, order);
+  
+  if(!createdFormElement) {
+    alert("Please Select A Input Type!");
+    return;
+  };
   divParentEl.appendChild(createdFormElement);
+  divParentEl.innerHTML += "<br/>";
+  ++order;
 };
 
 const selectFormElement = (event) => {
@@ -111,8 +115,8 @@ const createListStyle = (targetSize, choiceType) => {
     elementStyle[choiceType] = `${targetSize}px`;
     listStyles.push(elementStyle);
   } else {
-    listStyles[elementId[elementId.length - 1]-1][choiceType] = 
-    `${targetSize}px`;
+    const lastCharacter = elementId.slice(-1);
+    listStyles[lastCharacter][choiceType] = `${targetSize}px`;
   }
 };
 
@@ -132,3 +136,6 @@ const bindInputToRange = (event) => {
   document.getElementsByClassName(event.target.getAttribute("class"))[1].
   value = event.target.value;
 }
+
+spanTextChoices.addEventListener("click", setBackgroundToSpan);
+divParentEl.addEventListener("click", selectFormElement);
