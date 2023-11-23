@@ -73,10 +73,18 @@
                                 <div class="form-style-border-radius">
                                     <div>Border Radius</div>
                                     <div class="border-radius-option">
-                                        <input type="number" min="1">
-                                        <input type="number" min="1">
-                                        <input type="number" min="1">
-                                        <input type="number" min="1">
+                                        <input type="number" min="1" class="borderRadius-TL"
+                                        onkeyup="setSizeToFormElement('onkeyup', event, 'border-top-left-radius')" 
+                                        onchange="setSizeToFormElement('onchange', event, 'border-top-left-radius')">
+                                        <input type="number" min="1" class="borderRadius-TR"
+                                        onkeyup="setSizeToFormElement('onkeyup', event, 'border-top-right-radius')" 
+                                        onchange="setSizeToFormElement('onchange', event, 'border-top-right-radius')">
+                                        <input type="number" min="1" class="borderRadius-BL"
+                                        onkeyup="setSizeToFormElement('onkeyup', event, 'border-bottom-left-radius')" 
+                                        onchange="setSizeToFormElement('onchange', event, 'border-bottom-left-radius')">
+                                        <input type="number" min="1" class="borderRadius-BR"
+                                        onkeyup="setSizeToFormElement('onkeyup', event, 'border-bottom-right-radius')" 
+                                        onchange="setSizeToFormElement('onchange', event, 'border-bottom-right-radius')">
                                     </div>
                                 </div>
                             </div>
@@ -89,7 +97,9 @@
                                     <div>Height</div>
                                 </div>
                                 <div class="form-style-type">
-                                    <input type="number" min="1" class="inputHeightPx">
+                                    <input type="number" min="1" class="inputHeightPx" 
+                                    onkeyup="setSizeToFormElement('onkeyup', event, 'height')" 
+                                    onchange="setSizeToFormElement('onchange', event, 'height')">
                                     <span>px</span>
                                 </div>
                             </div>

@@ -137,7 +137,7 @@ const selectBindStyleOption = (event) => {
 const bindInputToRange = (event) => {
   if(event.target.value === 0) return;
 
-  document.getElementsByClassName(event.target.getAttribute("class"))[1].
+  document.getElementsByClassName(event.target.getAttribute("class"))[0].
   value = event.target.value;
 }
 
@@ -146,8 +146,8 @@ divParentEl.addEventListener("click", selectFormElement);
 
 const setSizeToFormElement = (eventType, event, optionType) => {
   const option = event.target;
+  const isBinded = eventType.includes("radius") ? _ : bindInputToRange(event);
 
-  getSelectedOption(option, 0).
-  addEventListener(eventType,
-  createListStyle(option.value, optionType), bindInputToRange(event), writeStyleToDom())
+  getSelectedOption(option, 0).addEventListener(eventType,
+  createListStyle(option.value, optionType), isBinded, writeStyleToDom())
 }
