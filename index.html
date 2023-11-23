@@ -55,16 +55,14 @@
                                 </div>
                                 <div class="form-style-type">
                                     <input type="number" min="1" max="100" class="inputWidthPx" 
-                                    onkeyup="setEventTypeToOption('onkeyup', event)" 
-                                    onchange="setEventTypeToOption('onchange', event)"
+                                    onkeyup="setSizeToFormElement('onkeyup', event, 'width')" 
+                                    onchange="setSizeToFormElement('onchange', event, 'width')"
                                     >
                                     <span>px</span>
                                 </div>
                             </div>
-                            <input type="range" class="inputWidthPx" oninput="
-                            selectBindStyleOption(event, 'width');
-                            createListStyle(event.target.value, 'width');
-                            writeStyleToDom()">
+                            <input type="range" class="inputWidthPx" 
+                            oninput="setSizeToFormElement('oninput', event, 'width')">
                         </div>
                         <div class="form-style-children">
                             <div class="form-style-children-option">
@@ -95,10 +93,7 @@
                                     <span>px</span>
                                 </div>
                             </div>
-                                <input type="range" class="inputHeightPx" oninput="
-                                selectBindStyleOption(event, 'height');
-                                createListStyle(event.target.value, 'height');
-                                writeStyleToDom()">
+                                <input type="range" class="inputHeightPx" oninput="setSizeToFormElement('oninput', event, 'height')">
                             </div>
                         <div>
                             <div class="form-style-children">
@@ -111,11 +106,7 @@
                                         <span>px</span>
                                     </div>
                                 </div>
-                                <input type="range" class="inputTextSize" oninput="
-                                 selectBindStyleOption(event, 'font-size');
-                                 createListStyle(event.target.value, 'font-size');
-                                 writeStyleToDom()   
-                                ">
+                                <input type="range" class="inputTextSize" oninput="setSizeToFormElement('oninput', event, 'font-size')">
                             </div>
                         </div>
                     </div>

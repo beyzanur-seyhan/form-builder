@@ -120,6 +120,10 @@ const createListStyle = (targetSize, choiceType) => {
   }
 };
 
+const getSelectedOption = (option,index) => {
+ return document.getElementsByClassName(option.getAttribute("class"))[index];
+}
+
 const selectBindStyleOption = (event) => {
   if (!selectedFormElement) {
     alert("Please Select A Form Element!");
@@ -139,3 +143,11 @@ const bindInputToRange = (event) => {
 
 spanTextChoices.addEventListener("click", setBackgroundToSpan);
 divParentEl.addEventListener("click", selectFormElement);
+
+const setSizeToFormElement = (eventType, event, optionType) => {
+  const option = event.target;
+
+  getSelectedOption(option, 0).
+  addEventListener(eventType,
+  createListStyle(option.value, optionType), bindInputToRange(event), writeStyleToDom())
+}
