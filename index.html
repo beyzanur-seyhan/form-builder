@@ -54,15 +54,10 @@
                                     <div>Width</div>
                                 </div>
                                 <div class="form-style-type">
-                                    <input type="number" min="1" max="100" class="inputWidthPx" onkeyup="
-                                    bindInputToRange(event);
-                                    createListStyle(event.target.value, 'width');
-                                    writeStyleToDom()" 
-                                    
-                                    onchange="
-                                    bindInputToRange(event);
-                                    createListStyle(event.target.value, 'width');
-                                    writeStyleToDom()">
+                                    <input type="number" min="1" max="100" class="inputWidthPx" 
+                                    onkeyup="setEventTypeToOption('onkeyup', event)" 
+                                    onchange="setEventTypeToOption('onchange', event)"
+                                    >
                                     <span>px</span>
                                 </div>
                             </div>
