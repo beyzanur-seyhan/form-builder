@@ -105,18 +105,18 @@ const createStyleSelector = (elementProp) => {
   return elementProp;
 }
 
-const createListStyle = (targetSize, choiceType) => {
+const createListStyle = (value, choiceType) => {
   if(!selectedFormElement) return;
 
   const elementId = selectedFormElement.id;
   const elementStyle = createStyleSelector({});
 
   if (!checkThereIsStyleSelector()) {
-    elementStyle[choiceType] = `${targetSize}px`;
+    elementStyle[choiceType] = value;
     listStyles.push(elementStyle);
   } else {
     const lastCharacter = elementId.slice(-1);
-    listStyles[lastCharacter][choiceType] = `${targetSize}px`;
+    listStyles[lastCharacter][choiceType] = value;
   }
 };
 
@@ -141,13 +141,17 @@ const bindInputToRange = (event) => {
   value = event.target.value;
 }
 
-spanTextChoices.addEventListener("click", setBackgroundToSpan);
-divParentEl.addEventListener("click", selectFormElement);
-
 const setSizeToFormElement = (eventType, event, optionType) => {
   const option = event.target;
-  const isBinded = eventType.includes("radius") ? _ : bindInputToRange(event);
+  const isBinded = optionType.includes("radius") 
+  || optionType.includes("color") ? ()=> console.info(optionType) : bindInputToRange(event);
+
+  let optionValue = option.value;
+  optionValue += optionType != "background-color" ? "px" : "";
 
   getSelectedOption(option, 0).addEventListener(eventType,
-  createListStyle(option.value, optionType), isBinded, writeStyleToDom())
+  createListStyle(optionValue, optionType), isBinded, writeStyleToDom())
 }
+
+spanTextChoices.addEventListener("click", setBackgroundToSpan);
+divParentEl.addEventListener("click", selectFormElement);
