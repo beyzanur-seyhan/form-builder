@@ -1,5 +1,6 @@
 const spanTextChoices = document.getElementsByClassName("text-choices")[0];
-const divParentEl = document.getElementById("custom-form-area");
+const divParentEl = document.querySelector("#custom-form-area");
+const domStyles = document.getElementsByTagName("style")[0];
 
 let selectedFormElement;
 let order = 0;
@@ -24,12 +25,12 @@ const setBackgroundToSpan = (event) => {
   }
 };
 
-const createFormElement = (eventTarget, order) => {
+const createFormElement = (eventTarget) => {
   const formElement = eventTarget.tagName.toLocaleLowerCase();
   let result = document.createElement(formElement);
   
   if(formElement === "input") {
-    if (!eventTarget.getAttribute("type")) result = false;;
+    if (!eventTarget.getAttribute("type")) result = false;
 
     result.type = eventTarget.getAttribute("type");
     result.id = `${formElement}-${result.type}-${order}`;
@@ -39,7 +40,7 @@ const createFormElement = (eventTarget, order) => {
 }
 
 const appendElementToParent = (event) => {
-  const createdFormElement = createFormElement(event.target, order);
+  const createdFormElement = createFormElement(event.target);
   
   if(!createdFormElement) {
     alert("Please Select A Input Type!");
@@ -63,10 +64,8 @@ const selectFormElement = (event) => {
 
 const checkThereIsStyleSelector = () => {
   let isInclude = false;
-
   if (
-    document.getElementsByTagName("style")[0]
-      .innerHTML.includes(selectedFormElement.id)
+    domStyles.innerHTML.includes(selectedFormElement.id)
   )
     isInclude = true;
 
@@ -85,10 +84,7 @@ const writeStyleToDom = () => {
     .replaceAll("{;", "{")
     .replaceAll("};", "}");
 
-  document.getElementsByTagName("style")[0].innerHTML = textStyle.slice(
-    1,
-    textStyle.length - 1
-  );
+    domStyles.innerHTML = textStyle.slice(1,textStyle.length - 1);
 };
 
 const createStyleSelector = (elementProp) => {
@@ -144,14 +140,44 @@ const bindInputToRange = (event) => {
 const setSizeToFormElement = (eventType, event, optionType) => {
   const option = event.target;
   const isBinded = optionType.includes("radius") 
-  || optionType.includes("color") ? ()=> console.info(optionType) : bindInputToRange(event);
+  || optionType.includes("color") ? () => console.info(optionType) : bindInputToRange(event);
 
   let optionValue = option.value;
   optionValue += optionType != "background-color" ? "px" : "";
 
   getSelectedOption(option, 0).addEventListener(eventType,
-  createListStyle(optionValue, optionType), isBinded, writeStyleToDom())
+  createListStyle(optionValue, optionType), isBinded, writeStyleToDom());
+}
+
+const outputDomElement = () => {
+  return(
+    `<html>
+      <head>
+        <style>
+          ${domStyles.innerHTML}
+        </style>
+      </head>
+      <body>
+        ${divParentEl.innerHTML}
+      </body>
+  </html>`
+  );
+}
+
+const outputDomElements = () => {
+  if(divParentEl.children.length === 0) return;
+
+  let element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + 
+  encodeURIComponent(outputDomElement()));
+  element.setAttribute('download', 'index.html');
+
+  document.body.appendChild(element);
+  element.click();
+
+  document.body.removeChild(element);
 }
 
 spanTextChoices.addEventListener("click", setBackgroundToSpan);
 divParentEl.addEventListener("click", selectFormElement);
+document.getElementById('btnOutput').addEventListener('click', outputDomElements);
