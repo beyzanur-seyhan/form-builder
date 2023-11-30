@@ -27,6 +27,7 @@
                 </div>
                 <input placeholder="Input" readonly="readonly" id="inputText" onclick="appendElementToParent(event)">
             </div>
+            <label onclick="appendElementToParent(event)">Label</label>
             <div class="selectbox">
                 <span>Select Box</span>
                 <select readonly="readonly" onclick="appendElementToParent(event)"></select>
@@ -46,7 +47,7 @@
         </div>
         <div class="form-area">
             <div>
-                <div class="form-style-area">
+                <div class="form-style-area" id="form-style-child">
                     <div class="form-style-child">
                         <div class="form-style-children">
                             <div class="form-style-children-option">
@@ -54,7 +55,7 @@
                                     <div>Width</div>
                                 </div>
                                 <div class="form-style-type">
-                                    <input type="number" min="1" max="100" class="inputWidthPx" 
+                                    <input type="number" min="1" max="100" class="inputWidthPx inputPxSize" 
                                     onkeyup="setSizeToFormElement('onkeyup', event, 'width')" 
                                     onchange="setSizeToFormElement('onchange', event, 'width')"
                                     >
@@ -73,16 +74,16 @@
                                 <div class="form-style-border-radius">
                                     <div>Border Radius</div>
                                     <div class="border-radius-option">
-                                        <input type="number" min="1" class="borderRadius-TL"
+                                        <input type="number" min="1" class="borderRadius-TL inputPxSize"
                                         onkeyup="setSizeToFormElement('onkeyup', event, 'border-top-left-radius')" 
                                         onchange="setSizeToFormElement('onchange', event, 'border-top-left-radius')">
-                                        <input type="number" min="1" class="borderRadius-TR"
+                                        <input type="number" min="1" class="borderRadius-TR inputPxSize"
                                         onkeyup="setSizeToFormElement('onkeyup', event, 'border-top-right-radius')" 
                                         onchange="setSizeToFormElement('onchange', event, 'border-top-right-radius')">
-                                        <input type="number" min="1" class="borderRadius-BL"
+                                        <input type="number" min="1" class="borderRadius-BL inputPxSize"
                                         onkeyup="setSizeToFormElement('onkeyup', event, 'border-bottom-left-radius')" 
                                         onchange="setSizeToFormElement('onchange', event, 'border-bottom-left-radius')">
-                                        <input type="number" min="1" class="borderRadius-BR"
+                                        <input type="number" min="1" class="borderRadius-BR inputPxSize"
                                         onkeyup="setSizeToFormElement('onkeyup', event, 'border-bottom-right-radius')" 
                                         onchange="setSizeToFormElement('onchange', event, 'border-bottom-right-radius')">
                                     </div>
@@ -97,7 +98,7 @@
                                     <div>Height</div>
                                 </div>
                                 <div class="form-style-type">
-                                    <input type="number" min="1" class="inputHeightPx" 
+                                    <input type="number" min="1" class="inputHeightPx inputPxSize" 
                                     onkeyup="setSizeToFormElement('onkeyup', event, 'height')" 
                                     onchange="setSizeToFormElement('onchange', event, 'height')">
                                     <span>px</span>
@@ -112,7 +113,7 @@
                                         <div>Text & Placeholder Size</div>
                                     </div>
                                     <div class="form-style-type">
-                                        <input type="number" min="1" class="inputTextSize">
+                                        <input type="number" min="1" class="inputTextSize inputPxSize">
                                         <span>px</span>
                                     </div>
                                 </div>

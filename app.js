@@ -35,6 +35,9 @@ const createFormElement = (eventTarget) => {
     result.type = eventTarget.getAttribute("type");
     result.id = `${formElement}-${result.type}-${order}`;
   }
+  if(formElement === "label" || formElement === "button") {
+    result.textContent = formElement;
+  }
   result.id = `${formElement}-${order}`;
   return result;
 }
@@ -49,6 +52,7 @@ const appendElementToParent = (event) => {
   divParentEl.appendChild(createdFormElement);
   divParentEl.innerHTML += "<br/>";
   ++order;
+  resetOptionValue();
 };
 
 const selectFormElement = (event) => {
@@ -60,6 +64,7 @@ const selectFormElement = (event) => {
       " Clicked!"
   );
   selectedFormElement = event.target;
+  resetOptionValue();
 };
 
 const checkThereIsStyleSelector = () => {
@@ -105,11 +110,11 @@ const createListStyle = (value, choiceType) => {
   if(!selectedFormElement) return;
 
   const elementId = selectedFormElement.id;
-  const elementStyle = createStyleSelector({});
+  const styleSelector = createStyleSelector({});
 
   if (!checkThereIsStyleSelector()) {
-    elementStyle[choiceType] = value;
-    listStyles.push(elementStyle);
+    styleSelector[choiceType] = value;
+    listStyles.push(styleSelector);
   } else {
     const lastCharacter = elementId.slice(-1);
     listStyles[lastCharacter][choiceType] = value;
@@ -176,6 +181,13 @@ const outputDomElements = () => {
   element.click();
 
   document.body.removeChild(element);
+}
+
+const resetOptionValue = () => {
+  let inputPxElement = document.querySelectorAll('.inputPxSize');
+  inputPxElement.forEach((element)=>{
+    if(element.value) element.value = "";
+  })
 }
 
 spanTextChoices.addEventListener("click", setBackgroundToSpan);

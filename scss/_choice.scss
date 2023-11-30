@@ -61,6 +61,15 @@
         outline: none;
     }
 
+    label {
+        cursor: pointer;
+        border: 2px solid #A9A6A6;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        padding-left: 2px;
+        color: #666;
+    }
+
     .form-choices {
         display: flex;
         flex-direction: column;
