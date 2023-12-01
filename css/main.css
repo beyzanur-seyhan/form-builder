@@ -166,7 +166,7 @@ li {
   font-size: 18px;
 }
 .choices .selectbox select {
-  width: 305px;
+  width: 100%;
   border: 2px solid #A9A6A6;
   height: 40px;
   cursor: pointer;
